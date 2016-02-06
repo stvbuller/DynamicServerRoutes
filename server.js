@@ -1,26 +1,47 @@
 var express = require('express');
+var omdb = require('omdb');
+
+var GitHubApi = require("node-github");
+var github = new GitHubApi({
+    version: "3.0.0"
+});
+
 var app = express();
-var PORT = 8090;
+var PORT = process.env.PORT || 8090;
 
+app.use("/js", express.static("public/js"));
+app.use("/css", express.static("public/css"));
 
-//serves the static resoure files
-
-app.use(express.static(__dirname + '/public/jquery-2.2.0.min'));
-app.use(express.static(__dirname + '/public/'));
-
-
-app.get('/', function(req, res) {
-  res.sendFile(process.cwd() + "/views/home.html");
+app.get("/", function(req, res) {
+  res.sendFile(process.cwd() + "/views/index.html");
 });
 
-app.get('/dashboard', function(req, res) {
-  res.sendFile(process.cwd() + "/views/dashboard.html");
-});
-
-app.get('/reister', function(req, res) {
+app.get("/register", function(req, res) {
   res.sendFile(process.cwd() + "/views/register.html");
 });
 
+app.get("/dashboard", function(req, res) {
+  res.sendFile(process.cwd() + "/views/dashboard.html");
+});
+
+
+app.get('/github/:gitName', function(req, res) {
+  github.user.getFrom({
+      user: req.params.gitName
+  }, function(err, gitResponse){
+      res.send(JSON.stringify(gitResponse))
+  });
+});
+
+app.get('/movies/:movieName', function(req, res) {
+  omdb.search(req.params.movieName, function(err, movies) {
+    console.log(movies);
+    var firstMovie = movies[0];
+
+    res.send(JSON.stringify(firstMovie));
+  });
+});
+
 app.listen(PORT, function() {
-  console.log("App is listening on port %s", PORT);
+  console.log("Listening on port %s", PORT);
 });

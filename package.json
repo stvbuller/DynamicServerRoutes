@@ -2,7 +2,7 @@
   "name": "lab13.3",
   "version": "1.0.0",
   "description": "Lab 13.3",
-  "main": "jquery-2.2.0.min.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/stvbuller/Lab13.3#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "node-github": "0.0.3",
+    "omdb": "^0.5.0"
   }
 }
