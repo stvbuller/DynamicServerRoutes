@@ -1,0 +1,23 @@
+{
+  "name": "lab13.3",
+  "version": "1.0.0",
+  "description": "Lab 13.3",
+  "main": "jquery-2.2.0.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stvbuller/Lab13.3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stvbuller/Lab13.3/issues"
+  },
+  "homepage": "https://github.com/stvbuller/Lab13.3#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
